@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <link rel="stylesheet" type="text/css" href="/stylesheet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="title-container">
+        <h1 class="main-title">Pamonha Converter 2</h1>
+    </div>
+    <div class="function-box">
+        <h2 class="description">Convert your images to another format below:</h2>
+        <input class="image-input" type="file" id="inputFile" name="uploadedImage" accept=".jpg,.jpeg,.png,.webp" required>
+        <br>
+        <label class="format-label" for="targetFormat">Convert to:</label>
+        <select class="selection-box" id="targetFormat">
+            <option value="jpg">.JPG</option>
+            <option value="png">.PNG</option>
+            <option value="webp">.WEBP</option>
+        </select>
+        <br>
+        <button class="convert-button" id="convertBtn">Convert</button> <br>
+        <p class="status-label" id="status"></p>
+        <a class="download-label" id="downloadLink" style="display:none">Download converted image</a>
+    </div>
+    <script>
+        const inputFile = document.getElementById('inputFile');
+        const targetFormat = document.getElementById('targetFormat');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusText = document.getElementById('status');
+        const downloadLink = document.getElementById('downloadLink');
+
+        // Map de extensões para MIME types
+        const formatMap = {
+            jpg: 'image/jpeg',
+            png: 'image/png',
+            webp: 'image/webp'
+        };
+
+        convertBtn.addEventListener('click', async () => {
+            statusText.textContent = '';
+            downloadLink.style.display = 'none';
+
+            if (!inputFile.files.length) {
+                statusText.textContent = 'Select an image file.';
+                return;
+            }
+            const file = inputFile.files[0];
+            const format = targetFormat.value;
+
+            // Bloqueia formatos que precisam de FFmpeg
+            if (!formatMap[format]) {
+                statusText.textContent = 'This format is not supported';
+                return;
+            }
+
+            statusText.textContent = 'Converting...';
+
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+
+                canvas.toBlob(blob => {
+                    if (!blob) {
+                        statusText.textContent = 'Error converting image. Your browser may not support this format.';
+                        return;
+                    }
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = 'converted.' + format;
+                    downloadLink.style.display = 'inline';
+                    downloadLink.textContent = 'Download converted image';
+                    statusText.textContent = 'Conversion complete!';
+                }, formatMap[format], 0.95);
+            };
+            img.onerror = () => {
+                statusText.textContent = 'Error loading image.';
+            };
+            img.src = URL.createObjectURL(file);
+        });
+    </script>
+</body>
+</html>

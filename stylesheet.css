@@ -1,0 +1,93 @@
+body{
+    background-image: url(https://assets.unileversolutions.com/recipes-v2/230382.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.title-container {
+    width: 100%;
+    height: fit-content;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.144);
+    text-align: center;
+    backdrop-filter: blur(10px);
+   }
+
+.main-title{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    color: #ffffff;
+    font-size: 56px;
+    text-align: match-parent;
+    text-rendering: optimizeLegibility;
+    text-shadow: 5px 5px black; 
+    padding: 30px 30px 30px 30px;
+}
+
+.function-box {
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 50px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.144);
+    text-align: center;
+    backdrop-filter: blur(50px);
+}
+
+.description{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+    padding: 17px 17px 50px 17px;
+    text-shadow: 3px 5px 3px black;
+}
+
+.image-input{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    padding: 40px 0 80px 0;
+    text-shadow: 2px 2px black;
+    color: white
+}
+
+.format-label{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    color: #ffffff;
+    text-shadow: 3px 5px black;
+    font-size: 24px;
+    text-align: center;
+}
+
+.convert-button{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: medium;
+    margin-top: 50px;
+    width: 110px;
+    height: 50px;
+    background-color: whitesmoke;
+    border-style: ridge;
+    border-radius: 15px;
+    text-shadow: 1px 1px gray;
+    margin-bottom: 10px;
+}
+
+.status-label{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    color: #ffffff;
+    text-shadow: 3px 5px black;
+    font-size: 15px;
+    text-align: center;
+}
+
+.download-label{
+    font-family: "Soecuak Gothic Expanded One", sans-serif;
+    padding: 15px 15px 15px 15px;
+    border-color: blue;
+    background-color: whitesmoke;
+    border-style: dashed;
+    border-top: 20px;
+    border-radius: 15px;
+}
